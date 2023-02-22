@@ -6,6 +6,7 @@ import fillHand from "./assets/fillHand.png";
 import { Context } from "./context";
 import axios from "axios";
 import scanSound from "./assets/scan.mp3";
+import { toast } from "react-toastify";
 const Scan = () => {
   let scanAudio = new Audio(scanSound);
   scanAudio.loop = true;
@@ -26,7 +27,7 @@ const Scan = () => {
       scanRef.current.classList.add("animate");
       scanAudio.play();
       axios
-        .post("https://oasis.solmc.in/insert.php", user)
+        .post("insert.php", user)
         .then((response) => {
           console.log(response.data.length);
           if (response.data.length) {
@@ -39,6 +40,10 @@ const Scan = () => {
           }
         })
         .catch((error) => {
+          scanRef.current.classList.remove("animate");
+          scanAudio.pause();
+          toast.error("Something went wrong, please try again later");
+          navigate("/");
           console.log(error);
         });
     }

@@ -1,34 +1,27 @@
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
 import Home from "./Home";
 import Layout from "./Layout";
 import Login from "./Login";
 import RotateDevice from "./RotateDevice";
 import Scan from "./Scan";
+import device from "current-device";
 
 const App = () => {
-  const isLandscape = () =>
-      window.matchMedia("(orientation:landscape)").matches,
-    [orientation, setOrientation] = useState(
-      isLandscape() ? "landscape" : "portrait"
-    );
-  const onWindowResize = useCallback(() => {
-    clearTimeout(window.resizeLag);
-    window.resizeLag = setTimeout(() => {
-      delete window.resizeLag;
-      setOrientation(isLandscape() ? "landscape" : "portrait");
-    }, 200);
-  }, []);
-
+  const [isIpad, setIsIpad] = useState(false);
   useEffect(() => {
-    onWindowResize();
-    window.addEventListener("resize", onWindowResize);
-    return () => {
-      window.removeEventListener("resize", onWindowResize);
-    };
-  }, [onWindowResize]);
-
-  if (orientation === "landscape") {
+    function handleResize() {
+      if (!device.portrait()) {
+        setIsIpad(true);
+      } else {
+        setIsIpad(false);
+      }
+    }
+    window.addEventListener("resize", handleResize);
+    handleResize();
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+  if (isIpad) {
     return <RotateDevice />;
   } else
     return (

@@ -20,6 +20,7 @@ body {
   /* max-height: 977px; */
   max-height: 1080px;
   height: 100vh;
+  height: calc(var(--vh, 1vh) * 100);
   /* border: 1px solid ; */
   /* background: red; */
   overflow: hidden;
@@ -149,8 +150,8 @@ header {
   bottom: 1rem;
 }
 .handArea {
-  width: 582px;
-  height: 687px;
+  width: 640px;
+  height: 755px;
   position: relative;
 }
 .handArea.disable {
@@ -230,7 +231,7 @@ header {
   width: 200px;
 }
 .totalCount {
-  position: absolute;
+  /* position: absolute;
   top: 465px;
   left: 255px;
   z-index: 3;
@@ -243,5 +244,19 @@ header {
   text-align: center;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: center; */
+  position: absolute;
+    top: 513px;
+    left: 278px;
+    z-index: 3;
+    color: #fff;
+    font-weight: bold;
+    font-size: 1.85rem;
+    width: 80px;
+    height: 42px;
+    background: transparent;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }

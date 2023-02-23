@@ -22,12 +22,12 @@ const Scan = () => {
   let scanRef = useRef(null);
   let handAreaRef = useRef(null);
   const handleTouchStart = (e) => {
-    if (e.targetTouches.length > 4) {
+    if (e.targetTouches.length > 0) {
       handAreaRef.current.classList.add("disable");
       scanRef.current.classList.add("animate");
       scanAudio.play();
       axios
-        .post("insert.php", user)
+        .post("https://oasisengagement.in/pledge/insert.php", user)
         .then((response) => {
           console.log(response.data.length);
           if (response.data.length) {

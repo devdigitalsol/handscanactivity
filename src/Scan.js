@@ -27,7 +27,7 @@ const Scan = () => {
       scanRef.current.classList.add("animate");
       scanAudio.play();
       axios
-        .post("https://oasisengagement.in/pledge/insert.php", user)
+        .post("insert.php", user)
         .then((response) => {
           console.log(response.data.length);
           if (response.data.length) {

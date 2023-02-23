@@ -22,7 +22,7 @@ const Scan = () => {
   let scanRef = useRef(null);
   let handAreaRef = useRef(null);
   const handleTouchStart = (e) => {
-    if (e.targetTouches.length > 0) {
+    if (e.targetTouches.length > 4) {
       handAreaRef.current.classList.add("disable");
       scanRef.current.classList.add("animate");
       scanAudio.play();
